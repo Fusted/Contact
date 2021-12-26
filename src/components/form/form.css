@@ -1,0 +1,25 @@
+.form {
+    width: clamp(300px, 50%, 500px);
+    margin: 0 auto;
+}
+
+.form-middle {
+    margin-top: 50vh;
+    transform: translateY(-50%);
+}
+
+.enterFields {
+    position: relative;
+    margin-top: 10px;
+}
+
+.enterFields::before {
+    content: 'Please, enter all fields';
+    color: #dc3545;
+    transition: all .4s linear;
+    font-size: 0.7em;
+    position: absolute;
+    top: -20px;
+    width: 150px;
+    left: -16px;
+}

@@ -1,0 +1,14 @@
+html, body {
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.App {
+  background-color: #e3eaf5;
+  min-height: 100vh;
+}
