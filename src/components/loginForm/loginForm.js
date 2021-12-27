@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Form, Input, Label, FormGroup, Button } from "reactstrap";
-import "./form.css";
+import "./loginForm.css";
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -28,9 +28,10 @@ export default class LoginForm extends Component {
     }
   };
   onSubmit = (e) => {
+    const {checkbox, username, password} = this.state
     e.preventDefault();
-    if (this.state.checkbox && this.state.username && this.state.password) {
-      this.props.onCorrectForm();
+    if (checkbox && username && password) {
+      this.props.onCorrectForm(username, password);
     } else {
       this.onIncorrectForm(["checkbox", "username", "password"]);
     }
@@ -50,6 +51,8 @@ export default class LoginForm extends Component {
   };
 
   render() {
+    const {validpassword, validusername, validcheckbox, buttonClass} = this.state
+
     return (
       <Form className="form form-middle">
         <FormGroup>
@@ -59,7 +62,7 @@ export default class LoginForm extends Component {
             name="username"
             placeholder="Enter your username or email"
             type="text"
-            className={this.state.validusername}
+            className={validusername}
             onChange={(e, type) => this.onChange(e, "username")}
           />
         </FormGroup>
@@ -70,7 +73,7 @@ export default class LoginForm extends Component {
             name="password"
             placeholder="Enter your password"
             type="password"
-            className={this.state.validpassword}
+            className={validpassword}
             onChange={(e, type) => this.onChange(e, "password")}
           />
         </FormGroup>
@@ -78,7 +81,7 @@ export default class LoginForm extends Component {
           <Label check>
             <Input
               type="checkbox"
-              className={this.state.validcheckbox}
+              className={validcheckbox}
               onChange={(e, type) => this.onChange(e, "checkbox")}
             />
             I accept the user agreement.
@@ -90,7 +93,7 @@ export default class LoginForm extends Component {
           color="info"
           outline
           onClick={this.onSubmit}
-          className={this.state.buttonClass}
+          className={buttonClass}
         >
           Submit
         </Button>

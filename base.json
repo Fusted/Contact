@@ -9,6 +9,13 @@
         "id": "AAA0.06799727281006018"
       },
       {
+        "firstName": "Danila",
+        "secondName": "Tikhantsov",
+        "number": "phone",
+        "description": "Frontend",
+        "id": "DanilaTikhantsov0.5446905528814874"
+      },
+      {
         "firstName": "First ",
         "secondName": "Second",
         "number": "phone",
@@ -30,5 +37,15 @@
         "id": "test0.5208329060055403"
       }
     ]
-  }
+  },
+  "accounts": [
+    [
+      "login",
+      "password"
+    ],
+    [
+      "admin",
+      "adminadmin"
+    ]
+  ]
 }
