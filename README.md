@@ -1,8 +1,11 @@
 # Contacts list application
 
-## Available Scripts
+
 
 In the project directory, you can run:
+
+### `npm i`
+Installs all packages
 
 ### `json-server base.json`
 
