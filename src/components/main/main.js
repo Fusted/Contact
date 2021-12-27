@@ -2,11 +2,15 @@ import { Component } from "react/cjs/react.production.min";
 import "./main.css";
 import CardList from "./cardList/cardList";
 import Service from "../../services/service";
+import SearchPanel from "./searchPanel/searchPanel";
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [] };
+    this.state = {
+      data: [],
+      term: "",
+    };
   }
 
   compareValues = (key) => {
@@ -29,50 +33,68 @@ export default class Main extends Component {
   };
 
   changeData = (newData) => {
-    const cards = newData
-    Service.sendData({cards})
-    this.setState({ data:cards })
-  }
+    const cards = newData;
+    Service.sendData({ cards });
+    this.setState({ data: cards });
+  };
   onAdd = (newCard) => {
     const newData = this.state.data;
     newData.push(newCard);
-		newData.sort(this.compareValues('firstName'))
-    this.changeData(newData)
+    newData.sort(this.compareValues("firstName"));
+    this.changeData(newData);
   };
 
-  onDelete = (id='') => {
+  onDelete = (id = "") => {
     const newArray = this.state.data.filter((item) => item.id !== id);
-    const newData = [...newArray]
-    this.changeData(newData)
+    const newData = [...newArray];
+    this.changeData(newData);
   };
 
   onEdited = (card) => {
-    const index = this.state.data.findIndex(item => item.id === card.id)
-    const newArray = this.state.data
-    newArray[index] = card
-    const newData = [...newArray]
-    this.changeData(newData)
-    
+    const index = this.state.data.findIndex((item) => item.id === card.id);
+    const newArray = this.state.data;
+    newArray[index] = card;
+    const newData = [...newArray];
+    this.changeData(newData);
+  };
+
+  changeTerm = (value) => {
+    this.setState({ term: value });
   };
   getInfo = async () => {
     Service.getResource().then((data) => {
-      const newState = data.cards
-      this.setState({ data: newState })});
+      const newState = data.cards;
+      this.setState({ data: newState });
+    });
+  };
+
+  searchCard = (items, term) => {
+    if (term.length === 0) {
+      return items;
+    }
+    return items.filter((item) => item.firstName.indexOf(term) > -1);
   };
   componentDidMount() {
     this.getInfo();
   }
 
   render() {
+    const {data, term} = this.state
+    const visibleCards = this.searchCard(data, term)
     
     return (
-      <CardList
-        onDelete={this.onDelete}
-        onAdd={this.onAdd}
-        onEdited={this.onEdited}
-        data={this.state.data}
-        className="cardList"
-      />
+      <main className="main">
+        <SearchPanel
+        onChangeTerm={this.changeTerm}
+         />
+        <CardList
+          onDelete={this.onDelete}
+          onAdd={this.onAdd}
+          onEdited={this.onEdited}
+          data={visibleCards}
+          className="cardList"
+        />
+      </main>
     );
   }
 }

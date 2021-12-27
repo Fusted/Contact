@@ -7,6 +7,7 @@ import { Component } from "react/cjs/react.production.min";
 export default class CardList extends Component {
   render() {
     const {data} = this.props
+    
     const elements = data.map((item) => {
       const { firstName, secondName, number, description, id } = item;
       return (

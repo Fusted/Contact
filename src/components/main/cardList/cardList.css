@@ -2,10 +2,10 @@
     margin-bottom: 20px;
 }
 
-.cardList {
+/* .cardList {
     width: clamp(300px, 80%, 600px);
     margin: 100px auto;
-}
+} */
 
 .card-title {
     display: flex;
