@@ -1,8 +1,8 @@
 import { Component } from "react/cjs/react.production.min";
-import "./main.css";
-import CardList from "./cardList/cardList";
-import Service from "../../services/service";
-import SearchPanel from "./searchPanel/searchPanel";
+import "./Main.css";
+import CardList from "./CardList/CardList";
+import Service from "../../Services/Service";
+import SearchPanel from "./SearchPanel/SearchPanel";
 
 export default class Main extends Component {
   constructor(props) {

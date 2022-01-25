@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Form, Input, Label, FormGroup, Button } from "reactstrap";
-import "./loginForm.css";
+import "./LoginForm.css";
 
 export default class LoginForm extends Component {
   constructor(props) {

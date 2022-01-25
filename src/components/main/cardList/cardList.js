@@ -1,7 +1,7 @@
 import React from "react";
-import CardItem from "../cardItem/cardItem";
-import "./cardList.css";
-import InputCard from "../inputCard/inputCard";
+import CardItem from "../CardItem/CardItem";
+import "./CardList.css";
+import InputCard from "../InputCard/InputCard";
 import { Component } from "react/cjs/react.production.min";
 
 export default class CardList extends Component {

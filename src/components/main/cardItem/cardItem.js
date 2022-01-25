@@ -7,7 +7,7 @@ import {
   CardSubtitle,
   Button,
 } from "reactstrap";
-import InputCard from "../inputCard/inputCard"; 
+import InputCard from "../InputCard/InputCard"; 
 
 export default class CardItem extends Component {
   constructor(props) {

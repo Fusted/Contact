@@ -2,13 +2,6 @@
   "data": {
     "cards": [
       {
-        "firstName": "1",
-        "secondName": "3",
-        "number": "2",
-        "description": "4",
-        "id": "130.23807766961100696"
-      },
-      {
         "firstName": "Danila",
         "secondName": "Tikhantsov",
         "number": "+79996742657",
@@ -16,25 +9,18 @@
         "id": "DanilaTikhantsov0.549756084578793"
       },
       {
-        "firstName": "Name",
-        "secondName": "",
-        "number": "",
-        "description": "",
-        "id": "Name0.2200865307984463"
-      },
-      {
-        "firstName": "Some",
-        "secondName": "",
-        "number": "phone",
-        "description": "",
-        "id": "Some0.6441211442546548"
-      },
-      {
         "firstName": "Some name",
         "secondName": "Some second name",
         "number": "Some phone",
         "description": "Some description",
         "id": "Some nameSome second name0.839146658373424"
+      },
+      {
+        "firstName": "test",
+        "secondName": "",
+        "number": "",
+        "description": "",
+        "id": "test0.6899626207122309"
       }
     ]
   },

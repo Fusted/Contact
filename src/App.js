@@ -1,8 +1,8 @@
 import './App.css';
 import { Component } from 'react/cjs/react.production.min';
 import {Row, Col} from 'reactstrap'
-import IsLogined from './components/isLogined/isLogined';
-import Service from './services/service';
+import IsLogined from './components/IsLogined/IsLogined';
+import Service from './Services/Service';
 
 export default class App extends Component {
 
@@ -16,7 +16,6 @@ export default class App extends Component {
   onCorrectForm = (login, password) => {
     Service.getAccounts()
     .then(array => {
-      
       if(array.filter(element => (element[0] === login && element[1] === password)).length > 0){
         this.setState({
           authorize: true
