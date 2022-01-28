@@ -1,4 +1,4 @@
-import { Component } from "react/cjs/react.production.min";
+import { useState } from "react";
 import {
   Card,
   CardBody,
@@ -7,54 +7,53 @@ import {
   CardSubtitle,
   Button,
 } from "reactstrap";
-import InputCard from "../InputCard/InputCard"; 
+import EditingCard from "../EditingCard/EditingCard";
 
-export default class CardItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editing: false,
-    }
-  }
-  onEdit = () => {
-    this.setState({
-      editing: true
-    })
-  }
+function CardItem(props) {
+  const [editing, setEditing] = useState(false);
+  const onEdit = () => {
+    setEditing(true);
+  };
 
-  onDelete = () => {
-    this.props.onDelete(this.props.id)
-  }
+  const onDelete = () => {
+    props.onDelete(props.id);
+  };
 
-  render() {
-    if (!this.state.editing) {
-      return (
-        <Card color="primary" outline>
-          <CardBody>
-            <CardTitle tag="h5">
-              <div>{this.props.firstName}</div>
-              <div>{this.props.number}</div>
-            </CardTitle>
-            <CardSubtitle className="mb-2 text-muted" tag="h6">
-              {this.props.secondName}
-            </CardSubtitle>
-            <CardText>{this.props.description}</CardText>
-            <Button onClick={this.onEdit} color="warning">Edit</Button>
-            <Button onClick={this.onDelete}color="danger">Delete</Button>
-          </CardBody>
-        </Card>
-      )
-    } else {
-      
-      return (
-        <InputCard 
-          id={this.props.id}
-          editing={true}
-          onEdited={this.props.onEdited}
-          onAdd={this.props.onAdd}
-          values = {this.props}
-        />
-      )
-    }
+  if (!editing) {
+    return (
+      <Card color="primary" outline>
+        <CardBody>
+          <CardTitle tag="h5">
+            <div>{props.firstName}</div>
+            <div>{props.number}</div>
+          </CardTitle>
+          <CardSubtitle className="mb-2 text-muted" tag="h6">
+            {props.secondName}
+          </CardSubtitle>
+          <CardText>{props.description}</CardText>
+          <Button onClick={onEdit} color="warning">
+            Edit
+          </Button>
+          <Button onClick={onDelete} color="danger">
+            Delete
+          </Button>
+        </CardBody>
+      </Card>
+    );
+  } else {
+
+    return (
+      <EditingCard
+        id={props.id}
+        onEdit={props.onEdit}
+        onAdd={props.onAdd}
+        firstName={props.firstName}
+        secondName={props.secondName}
+        number={props.number}
+        description={props.description}
+      />
+    );
   }
 }
+
+export default CardItem;

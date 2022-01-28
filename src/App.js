@@ -1,62 +1,53 @@
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import { Component } from "react/cjs/react.production.min";
 import { Row, Col } from "reactstrap";
 import Service from "./Services/Service";
 import Main from "./components/Main/Main";
 import LoginForm from "./components/LoginForm/LoginForm";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      authorize: false,
-    };
-  }
+function App() {
+  const [authorize, setAuthorize] = useState(false);
 
-  onCorrectForm = (login, password) => {
+  const onCorrectForm = (login, password) => {
     Service.getAccounts().then((array) => {
       if (
         array.filter(
           (element) => element[0] === login && element[1] === password
         ).length > 0
       ) {
-        this.setState({
-          authorize: true,
-        });
+        setAuthorize(true);
         localStorage.setItem("Contactsauthorized", "true");
       }
     });
   };
 
-  componentDidMount() {
+  useEffect(() => {
     if (localStorage.getItem("Contactsauthorized") === "true") {
-      this.setState({
-        authorize: true,
-      });
+      setAuthorize(true);
     }
-  }
+  }, [authorize]);
 
-  render() {
-    if (this.state.authorize) {
-      return (
-        <div className="App">
-          <Row>
-            <Col>
-              <Main />
-            </Col>
-          </Row>
-        </div>
-      );
-    } else {
-      return (
-        <div className="App">
-          <Row>
-            <Col>
-              <LoginForm onCorrectForm={this.onCorrectForm} />
-            </Col>
-          </Row>
-        </div>
-      );
-    }
+  if (authorize) {
+    return (
+      <div className="App">
+        <Row>
+          <Col>
+            <Main />
+          </Col>
+        </Row>
+      </div>
+    );
+  } else {
+    return (
+      <div className="App">
+        <Row>
+          <Col>
+            <LoginForm onCorrectForm={onCorrectForm} />
+          </Col>
+        </Row>
+      </div>
+    );
   }
 }
+
+export default App;

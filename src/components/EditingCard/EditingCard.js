@@ -11,14 +11,16 @@ import {
   Button,
 } from "reactstrap";
 
-function InputCard(props) {
+function EditingCard(props) {
+  const { firstName, secondName, number, description, id } = props;
   const [values, setValues] = useState({
-    firstName: "",
-    secondName: "",
-    number: "",
-    description: "",
-    id: "",
+    firstName: firstName || "",
+    secondName: secondName || "",
+    number: number || "",
+    description: description || "",
+    id: id,
   });
+
   const onChange = (e) => {
     e.preventDefault();
     const newValues = values;
@@ -28,13 +30,14 @@ function InputCard(props) {
 
   const onConfirm = (e) => {
     const newState = values;
-    newState.id = newState.firstName + newState.secondName + Math.random();
-    props.onAdd(newState);
+    // e.preventDefault()
+    newState.id = props.id;
+    props.onEdit(newState);
   };
 
   return (
     <Card color="primary" outline>
-      <Form>
+      <Form className="teeest">
         <CardBody>
           <CardTitle tag="h5">
             <FormGroup>
@@ -43,6 +46,7 @@ function InputCard(props) {
                 type="text"
                 placeholder="Enter first name"
                 onChange={onChange}
+                defaultValue={firstName}
               />
             </FormGroup>
             <FormGroup>
@@ -51,6 +55,7 @@ function InputCard(props) {
                 type="text"
                 placeholder="Enter phone"
                 onChange={onChange}
+                defaultValue={number}
               />
             </FormGroup>
           </CardTitle>
@@ -61,6 +66,7 @@ function InputCard(props) {
                 type="text"
                 placeholder="Enter second name"
                 onChange={onChange}
+                defaultValue={secondName}
               />
             </FormGroup>
           </CardSubtitle>
@@ -70,6 +76,7 @@ function InputCard(props) {
               type="text"
               placeholder="Enter description name"
               onChange={onChange}
+              defaultValue={description}
             />
           </CardText>
           <Button type="submit" onClick={onConfirm} color="success">
@@ -84,4 +91,10 @@ function InputCard(props) {
   );
 }
 
-export default InputCard;
+export default EditingCard;
+
+// if(this.props.editing){
+//     // e.preventDefault()
+//     newState.id = this.props.id
+//     this.props.onEdit(newState)
+//   } else {
