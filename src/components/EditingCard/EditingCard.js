@@ -35,6 +35,7 @@ function EditingCard(props) {
     props.onEdit(newState);
   };
 
+
   return (
     <Card color="primary" outline>
       <Form className="teeest">
@@ -82,7 +83,7 @@ function EditingCard(props) {
           <Button type="submit" onClick={onConfirm} color="success">
             Confirm
           </Button>
-          <Button type="reset" color="danger">
+          <Button type="reset" onClick={props.onCancel} color="danger">
             Cancel
           </Button>
         </CardBody>

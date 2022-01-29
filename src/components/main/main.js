@@ -29,6 +29,7 @@ function Main() {
 
   const changeData = (newData) => {
     const cards = newData;
+    console.log(cards)
     Service.sendData({ cards });
     setData(cards);
   };
@@ -74,7 +75,7 @@ function Main() {
 
   useEffect(() => {
     getInfo();
-  });
+  }, []);
 
   const visibleCards = searchCard(data, term);
 

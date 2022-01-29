@@ -15,6 +15,10 @@ function CardItem(props) {
     setEditing(true);
   };
 
+  const onCancel = (items) => {
+    setEditing(false)
+  }
+
   const onDelete = () => {
     props.onDelete(props.id);
   };
@@ -47,6 +51,7 @@ function CardItem(props) {
         id={props.id}
         onEdit={props.onEdit}
         onAdd={props.onAdd}
+        onCancel={onCancel}
         firstName={props.firstName}
         secondName={props.secondName}
         number={props.number}
