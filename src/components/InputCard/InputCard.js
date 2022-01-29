@@ -26,7 +26,7 @@ function InputCard(props) {
     setValues({ ...newValues });
   };
 
-  const onConfirm = (e) => {
+  const onSubmit = (e) => {
     const newState = values;
     newState.id = newState.firstName + newState.secondName + Math.random();
     props.onAdd(newState);
@@ -72,7 +72,7 @@ function InputCard(props) {
               onChange={onChange}
             />
           </CardText>
-          <Button type="submit" onClick={onConfirm} color="success">
+          <Button type="submit" onClick={onSubmit} color="success">
             Confirm
           </Button>
           <Button type="reset" color="danger">

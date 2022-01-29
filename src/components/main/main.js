@@ -4,28 +4,28 @@ import CardList from "../CardList/CardList";
 import Service from "../../Services/Service";
 import SearchPanel from "../SearchPanel/SearchPanel";
 
+const compareValues = (key) => {
+  return function (a, b) {
+    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      return 0;
+    }
+
+    const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key];
+    const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key];
+
+    let comparison = 0;
+    if (varA > varB) {
+      comparison = 1;
+    } else if (varA < varB) {
+      comparison = -1;
+    }
+    return comparison;
+  };
+};
+
 function Main() {
   const [data, setData] = useState([]);
   const [term, setTerm] = useState("");
-
-  const compareValues = (key) => {
-    return function (a, b) {
-      if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
-        return 0;
-      }
-
-      const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key];
-      const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key];
-
-      let comparison = 0;
-      if (varA > varB) {
-        comparison = 1;
-      } else if (varA < varB) {
-        comparison = -1;
-      }
-      return comparison;
-    };
-  };
 
   const changeData = (newData) => {
     const cards = newData;
@@ -66,10 +66,15 @@ function Main() {
   };
 
   const searchCard = (items, term) => {
+    term = term.toLowerCase()
     if (term.length === 0) {
       return items;
     }
-    return items.filter((item) => item.firstName.indexOf(term) > -1);
+    return items.filter((item) => {
+      const fName = item.firstName.toLowerCase()
+      const sName = item.secondName.toLowerCase()
+      return (fName.indexOf(term) > -1 || sName.indexOf(term) > -1)
+    });
   };
 
   useEffect(() => {
