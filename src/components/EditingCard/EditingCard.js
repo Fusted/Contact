@@ -29,10 +29,11 @@ function EditingCard(props) {
   };
 
   const onConfirm = (e) => {
+    e.preventDefault()
     const newState = values;
-    // e.preventDefault()
     newState.id = props.id;
     props.onEdit(newState);
+    props.onCancel()
   };
 
 
@@ -93,9 +94,3 @@ function EditingCard(props) {
 }
 
 export default EditingCard;
-
-// if(this.props.editing){
-//     // e.preventDefault()
-//     newState.id = this.props.id
-//     this.props.onEdit(newState)
-//   } else {
